@@ -8,6 +8,11 @@ import java.util.Map;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * <p>Cave controller use in @see CaveView<p/>
+ *
+ * Used Map for execute appropriate command (init in constructor)
+ * (UserCommand @see UserCommand -> Command @see Command).
  */
 public class CaveController {
 
@@ -22,6 +27,12 @@ public class CaveController {
         commandMap.put(UserCommand.TREASURE_ON_SUM, new TreasuresOnSum());
     }
 
+    /**
+     * Execute appropriate command with given params used pattern Command.
+     * @param command Enum @see UserCommand.
+     * @param params Parameters pass to command.
+     * @return Result of command.
+     */
     public Object performCommand(UserCommand command, Object[] params) {
         if (params != null) {
             commandMap.get(command).setParams(params);
@@ -30,6 +41,10 @@ public class CaveController {
         return commandMap.get(command).getResult();
     }
 
+    /**
+     * @param command Enum @see UserCommand.
+     * @return Get result of last execution command appropriate UserCommand.
+     */
     public Object getResult(UserCommand command) {
         return commandMap.get(command).getResult();
     }

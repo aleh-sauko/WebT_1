@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * Show all treasure in Cave.
  */
 public class ShowTreasures implements Command {
 

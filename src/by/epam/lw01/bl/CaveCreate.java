@@ -4,6 +4,8 @@ import by.epam.lw01.entity.Cave;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * <p>Command to create cave with passed name.</p>
  */
 public class CaveCreate implements Command {
 

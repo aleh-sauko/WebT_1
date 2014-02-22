@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * <p>Entity of cave which keep treasure</p>
+ * Used singleton for access.
  */
 public class Cave {
 

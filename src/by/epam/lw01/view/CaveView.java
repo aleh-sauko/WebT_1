@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * <p>View used for changed data between user and model.<p/>
+ * <p>User CaveController @see CaveController</p>
  */
 public class CaveView {
 

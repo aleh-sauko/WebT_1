@@ -2,6 +2,9 @@ package by.epam.lw01.entity;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * <p>Entity treasure which have name and value.</p>
+ * Nothing difficult.
  */
 public class Treasure {
 

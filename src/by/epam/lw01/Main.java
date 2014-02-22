@@ -5,6 +5,8 @@ import by.epam.lw01.view.CaveView;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * <p>Start point of app.</p>
  */
 public class Main {
 

@@ -5,12 +5,19 @@ import by.epam.lw01.entity.Treasure;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * <p>Add Treasure to cave with given name and value.</p>
  */
 public class AddTreasure implements Command {
 
     private String name;
     private Integer value;
 
+    /**
+     * @param params Passed parameters.
+     * params[0] -> name
+     * params[1] -> value
+     */
     @Override
     public void setParams(Object[] params) {
         name = (String)params[0];

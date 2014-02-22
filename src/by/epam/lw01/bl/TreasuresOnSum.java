@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * Return Treasures which common values max and not above given sum.
+ * Used Dynamic Programing.
  */
 public class TreasuresOnSum implements Command {
 
@@ -22,6 +25,9 @@ public class TreasuresOnSum implements Command {
     private  ArrayList<Treasure> allTreasures;
     private int[][] d;
 
+    /**
+     * Algorithm O(Count Treasure * Sum).
+     */
     @Override
     public void execute() {
         treasures = new ArrayList<Treasure>();
@@ -41,6 +47,11 @@ public class TreasuresOnSum implements Command {
         retrievesTreasures(allTreasures.size(), sum);
     }
 
+    /**
+     * Recursive proc witch retrieves needed treasures.
+     * @param count Remaining count of treasure.
+     * @param sum Remaining sum.
+     */
     private void retrievesTreasures(int count, int sum) {
         if (d[count][sum] == 0) {
             return;

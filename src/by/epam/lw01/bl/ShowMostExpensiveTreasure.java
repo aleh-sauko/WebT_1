@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 /**
  * Created by aleh on 22.02.14.
+ *
+ * Return most expensive treasure in cave.
  */
 public class ShowMostExpensiveTreasure implements Command {
 
