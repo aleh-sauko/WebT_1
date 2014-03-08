@@ -1,9 +1,12 @@
 package by.epam.lw01.bl;
 
+import by.epam.lw01.dto.CaveDTO;
+import by.epam.lw01.dto.GeneralDTO;
 import by.epam.lw01.entity.Cave;
 import by.epam.lw01.entity.Treasure;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by aleh on 22.02.14.
@@ -11,19 +14,10 @@ import java.util.ArrayList;
  * Show all treasure in Cave.
  */
 public class ShowTreasures implements Command {
-
-    private ArrayList<Treasure> treasures;
-
     @Override
-    public void setParams(Object[] params) {}
-
-    @Override
-    public void execute() {
-        treasures = Cave.getInstance().getTreasures();
-    }
-
-    @Override
-    public ArrayList<Treasure> getResult() {
-        return treasures;
+    public GeneralDTO execute(GeneralDTO param) {
+        CaveDTO dto = new CaveDTO();
+        dto.iterator = Cave.getInstance().getTreasures();
+        return dto;
     }
 }

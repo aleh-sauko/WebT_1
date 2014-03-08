@@ -1,9 +1,12 @@
 package by.epam.lw01.bl;
 
+import by.epam.lw01.dto.GeneralDTO;
+import by.epam.lw01.dto.TreasureDTO;
 import by.epam.lw01.entity.Cave;
 import by.epam.lw01.entity.Treasure;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by aleh on 22.02.14.
@@ -12,29 +15,23 @@ import java.util.ArrayList;
  */
 public class ShowMostExpensiveTreasure implements Command {
 
-    private Treasure treasure;
-
     @Override
-    public void setParams(Object[] params) {}
+    public GeneralDTO execute(GeneralDTO param) {
+        Iterator<Treasure> treasures = Cave.getInstance().getTreasures();
 
-    @Override
-    public void execute() {
-        ArrayList<Treasure> treasures = Cave.getInstance().getTreasures();
-
-        if (treasures == null || treasures.size() == 0) {
-            return;
+        if (treasures == null && !treasures.hasNext()) {
+            return null;
         }
 
-        this.treasure = treasures.get(0);
-        for (Treasure treasure : treasures) {
-            if (treasure.getValue() > this.treasure.getValue()) {
-                this.treasure = treasure;
+        TreasureDTO dto = new TreasureDTO();
+        dto.treasure = treasures.next();
+        while (treasures.hasNext()) {
+            Treasure treasure = treasures.next();
+            if (treasure.getValue() > dto.treasure.getValue()) {
+                dto.treasure = treasure;
             }
         }
-    }
 
-    @Override
-    public Object getResult() {
-        return treasure;
+        return dto;
     }
 }

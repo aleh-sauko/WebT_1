@@ -1,5 +1,7 @@
 package by.epam.lw01.bl;
 
+import by.epam.lw01.dto.GeneralDTO;
+import by.epam.lw01.dto.TreasureDTO;
 import by.epam.lw01.entity.Cave;
 import by.epam.lw01.entity.Treasure;
 
@@ -10,27 +12,16 @@ import by.epam.lw01.entity.Treasure;
  */
 public class AddTreasure implements Command {
 
-    private String name;
-    private Integer value;
-
-    /**
-     * @param params Passed parameters.
-     * params[0] -> name
-     * params[1] -> value
-     */
     @Override
-    public void setParams(Object[] params) {
-        name = (String)params[0];
-        value = (Integer)params[1];
-    }
+    public GeneralDTO execute(GeneralDTO param) throws CommandCastException {
 
-    @Override
-    public void execute() {
-        Cave.getInstance().addTreasure(new Treasure(name, value));
-    }
+        if (!(param instanceof TreasureDTO)) {
+            throw new CommandCastException();
+        }
 
-    @Override
-    public Object getResult() {
+        TreasureDTO dto = (TreasureDTO) param;
+        Cave.getInstance().addTreasure(new Treasure(dto.name,
+                dto.value));
         return null;
     }
 }

@@ -1,6 +1,8 @@
 package by.epam.lw01.entity;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by aleh on 22.02.14.
@@ -13,7 +15,7 @@ public class Cave {
     private static Cave instance;
 
     private String name;
-    private ArrayList<Treasure> treasures;
+    private List<Treasure> treasures;
 
     private Cave() {
         treasures = new ArrayList<Treasure>();
@@ -38,8 +40,8 @@ public class Cave {
         this.name = name;
     }
 
-    public ArrayList<Treasure> getTreasures() {
-        return treasures;
+    public Iterator<Treasure> getTreasures() {
+        return treasures.iterator();
     }
 
     public void setTreasures(ArrayList<Treasure> treasures) {
@@ -48,6 +50,10 @@ public class Cave {
 
     public void addTreasure(Treasure treasure) {
         treasures.add(treasure);
+    }
+
+    public int getCountOfTreasures() {
+        return treasures.size();
     }
 
     @Override

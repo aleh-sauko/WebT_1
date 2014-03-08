@@ -1,6 +1,7 @@
 package by.epam.lw01.controller;
 
 import by.epam.lw01.bl.*;
+import by.epam.lw01.dto.GeneralDTO;
 import by.epam.lw01.util.UserCommand;
 
 import java.util.HashMap;
@@ -14,11 +15,12 @@ import java.util.Map;
  * Used Map for execute appropriate command (init in constructor)
  * (UserCommand @see UserCommand -> Command @see Command).
  */
-public class CaveController {
+public final class CaveController {
 
     private Map<UserCommand, Command> commandMap;
+    private static CaveController instance;
 
-    public CaveController() {
+    private CaveController() {
         commandMap = new HashMap<UserCommand, Command>();
         commandMap.put(UserCommand.CREATE_CAVE, new CaveCreate());
         commandMap.put(UserCommand.ADD_TREASURE, new AddTreasure());
@@ -27,25 +29,31 @@ public class CaveController {
         commandMap.put(UserCommand.TREASURE_ON_SUM, new TreasuresOnSum());
     }
 
-    /**
-     * Execute appropriate command with given params used pattern Command.
-     * @param command Enum @see UserCommand.
-     * @param params Parameters pass to command.
-     * @return Result of command.
-     */
-    public Object performCommand(UserCommand command, Object[] params) {
-        if (params != null) {
-            commandMap.get(command).setParams(params);
+    public static CaveController getInstance() {
+        if (instance == null) {
+            synchronized (CaveController.class) {
+                if (instance == null) {
+                    instance = new CaveController();
+                }
+            }
         }
-        commandMap.get(command).execute();
-        return commandMap.get(command).getResult();
+        return instance;
     }
 
     /**
+     * Execute appropriate command with given params used pattern Command.
      * @param command Enum @see UserCommand.
-     * @return Get result of last execution command appropriate UserCommand.
+     * @param param Parameters pass to command.
+     * @return Result of command.
      */
-    public Object getResult(UserCommand command) {
-        return commandMap.get(command).getResult();
+    public GeneralDTO performCommand(UserCommand command, GeneralDTO param) {
+        GeneralDTO dto = null;
+        try {
+            dto = commandMap.get(command).execute(param);
+        } catch (CommandCastException e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
+
 }
